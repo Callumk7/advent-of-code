@@ -117,6 +117,7 @@ let stacks = [stackOne, stackTwo, stackThree, stackFour, stackFive, stackSix, st
 
 // now lets do the instructions
 // This is going to be commented out for part 2
+
 /* for (let instruction = 0; instruction < instructionObjects.length; instruction++) {
 	let instructionObject = instructionObjects[instruction];
 	for (let moves = 1; moves <= instructionObject.moves; moves++) {
