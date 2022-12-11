@@ -94,3 +94,32 @@ for (let elfPair = 0; elfPair < elfPairs.length; elfPair++) {
 	}
 }
 console.log(elfCount);
+
+// part two logic: if elf one's end is greater than or equal to elf two's start..
+// OR elf one's start is less than or equal to elf two's end
+// OR vice versa
+
+// |------|
+//    |-------|
+
+let elfCountOverlap = 0;
+for (let elfPair = 0; elfPair < elfPairs.length; elfPair++) {
+	let elfPairInQuestion = elfPairs[elfPair];
+	if (
+		(elfPairInQuestion.firstElf.end >= elfPairInQuestion.secondElf.start &&
+			elfPairInQuestion.firstElf.end <= elfPairInQuestion.secondElf.end) ||
+		(elfPairInQuestion.firstElf.start >= elfPairInQuestion.secondElf.start &&
+			elfPairInQuestion.firstElf.start <= elfPairInQuestion.secondElf.end)
+	) {
+		elfCountOverlap++;
+	} else if (
+		(elfPairInQuestion.secondElf.end >= elfPairInQuestion.firstElf.start &&
+			elfPairInQuestion.secondElf.end <= elfPairInQuestion.firstElf.end) ||
+		(elfPairInQuestion.secondElf.start >= elfPairInQuestion.firstElf.start &&
+			elfPairInQuestion.secondElf.start <= elfPairInQuestion.firstElf.end)
+	) {
+		elfCountOverlap++;
+	}
+}
+
+console.log(elfCountOverlap);
