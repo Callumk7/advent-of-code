@@ -106,8 +106,7 @@ for (let bag = 0; bag < bags.length; bag++) {
 		for (let checkItem = 0; checkItem < bagCompartment.length; checkItem++) {
 			if (
 				bagCompartment.charAt(item) === checkBagCompartment.charAt(checkItem) &&
-				bagCompartment.charAt(item) != problemItem &&
-				checkBagCompartment.charAt(checkItem) != problemItem
+				bagCompartment.charAt(item) != problemItem
 			) {
 				// priority is from the array +1.
 				problemItem = bagCompartment.charAt(item);
