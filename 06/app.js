@@ -2,31 +2,49 @@ const fs = require("fs");
 
 const text = fs.readFileSync("./input.txt", "utf8");
 
-// find the character number for part where there are four unrepeated characters
-// iterate along the string to start with.
-// Lets also check what the text sting actually is.
+// start by logging the length of the text
+console.log(text.length);
 
-console.log(text.length); // 4095
+// we want to find the first character that does not appear in the previous three characters
 
-// we can start at 03 and work across.
-for (let letter = 3; letter < text.length; letter++) {
-    // we want to check for characters that are in the previous 3 spots
-    // This should be easy enough because we can get the position where this
-    // first happened.
-    let string = text.slice(letter - 3, letter);
-    let char = text.charAt(letter);
-    if (!string.includes(char)) {
-        console.log(letter);
-        console.log(`${char} is not in ${string}`);
-        // great! now we need to check this string
-        let stringArray = [];
-        for (let i = 0; i < string.length; i++) {
-            stringArray.push(string.charAt(i));
+for (let character = 3; character < text.length; character++) {
+    // check to see if the character is in the previous three characters
+    const previousThree = text.slice(character - 3, character);
+    if (!previousThree.includes(text[character])) {
+        console.log("found a potential character at index", character);
+        // now we want to find out if previousThree contains any duplicates
+        const previousThreeArray = previousThree.split("");
+        const previousThreeSet = new Set(previousThreeArray);
+        if (previousThreeArray.length !== previousThreeSet.size) {
+            // then there are duplicates
+            console.log("found a duplicate at index", character);
+        } else {
+            console.log("no duplicates found at index", character);
+            console.log(text.charAt(character));
+            console.log(previousThree);
+            break;
         }
-        for (let i = 0; i < string.length; i++) {
-            let letterFromString = stringArray.shift(i);
-            if (!stringArray.includes(letterFromString)) {
-            }
+    }
+}
+
+// now we need to do the same thing as above, but we need to look for the first character that does not appear in the previous 14 characters
+
+for (let character = 14; character < text.length; character++) {
+    // check to see if the character is in the previous 14 characters
+    const previousFourteen = text.slice(character - 14, character);
+    if (!previousFourteen.includes(text[character])) {
+        console.log("found a potential character at index", character);
+        // now we want to find out if previousFourteen contains any duplicates
+        const previousFourteenArray = previousFourteen.split("");
+        const previousFourteenSet = new Set(previousFourteenArray);
+        if (previousFourteenArray.length !== previousFourteenSet.size) {
+            // then there are duplicates
+            console.log("found a duplicate at index", character);
+        } else {
+            console.log("no duplicates found at index", character);
+            console.log(text.charAt(character));
+            console.log(previousFourteen);
+            break;
         }
     }
 }
